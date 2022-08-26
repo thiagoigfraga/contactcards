@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Contato } from '../classes/contato';
+import { ContatoService } from '../services/contato.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +9,13 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  contatos: Contato[];
 
-  constructor() {}
+  constructor(private router: Router, private contatoService: ContatoService) {
+    this.contatos = this.contatoService.contatos;
+  }
 
+  irParaCadastrar() {
+    this.router.navigate(['/cadastrar']);
+  }
 }
